@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>WebSocket</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		var websocket = null;
+		//判断当前浏览器是否支持WebSocket
+		if ('WebSocket' in window) {
+			websocket = new WebSocket("ws://127.0.0.1:8080/WebSocket/xgc");
+		} else {
+			alert('当前浏览器 Not support websocket')
+		}
+
+		//连接发生错误的回调方法
+		websocket.onerror = function() {
+			console.log("WebSocket连接发生错误");
+		};
+
+		//连接成功建立的回调方法
+		websocket.onopen = function() {
+			console.log("WebSocket连接成功");
+		}
+
+		//接收到消息的回调方法
+		websocket.onmessage = function(event) {
+			console.log(event.data);
+		}
+
+		//连接关闭的回调方法
+		websocket.onclose = function() {
+			console.log("WebSocket连接关闭");
+		}
+
+		//发送消息
+		function sendMsg(msg) {
+			websocket.send(msg);
+		}
+	</script>
+
+</html>
+
