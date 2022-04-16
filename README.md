@@ -7,7 +7,7 @@
 ![image.png](https://ucc.alicdn.com/pic/developer-ecology/1c5696dd4aef487f9cf8685a87346bbf.png)
 ### 🔥  相关技术springboot
 
-使用框架springboot，快速搭建后端服务。
+使用框架springboot，快速搭建后端服务。  
 ###🔥  搭建教程
 打开天猫精灵技能官网：https://iap.aligenie.com/
 ![image.png](https://ucc.alicdn.com/pic/developer-ecology/4d3b8977ac6d433ab26d00e3f1b338e2.png)
