@@ -5,10 +5,11 @@ package com.ylesb.demo.utils;
  * @description: TODO
  * @author White
  * @site : [www.ylesb.com]
- * @date 2022/4/159:12
+ * @date 2022/4/1811:01
  */
 
-import org.apache.commons.lang3.StringUtils;
+
+import org.apache.commons.lang.StringUtils;
 import org.bouncycastle.crypto.digests.SM3Digest;
 import org.bouncycastle.crypto.macs.HMac;
 import org.bouncycastle.crypto.params.KeyParameter;
@@ -33,9 +34,9 @@ import java.util.*;
  * @author       : [XuGuangchao]
  * @site         : [www.ylesb.com]
  * @version      : [v1.0]
- * @createTime   : [2022/4/15 9:12]
+ * @createTime   : [2022/4/18 11:01]
  * @updateUser   : [XuGuangchao]
- * @updateTime   : [2022/4/15 9:12]
+ * @updateTime   : [2022/4/18 11:01]
  * @updateRemark : [描述说明本次修改内容] 
  */
 
@@ -73,27 +74,8 @@ public class Client {
             }
         }
         String[] canonicalizedKeysArray = canonicalizedKeys.toArray(new String[canonicalizedKeys.size()]);
-        System.out.println("canonicalizedKeysArray = " + canonicalizedKeysArray[0]);
-        System.out.println(" Arrays.asList(canonicalizedKeysArray) = " + Arrays.asList(canonicalizedKeysArray));
-        String[] s = { "a", "b", "c", "d", "e" };
-        String str1 = StringUtils.join(",", s);
-        System.out.println("str1 = " + str1);
-       String[] words = { "i", "love", "leetcode", "apples" };
-        String a = "";
-        for (int i = 0; i < canonicalizedKeysArray.length; i++)
-        {
-            a += canonicalizedKeysArray[i];
-            if(i != canonicalizedKeysArray.length - 1)
-            {
-                a += ";";
-            }else {
-                a += ",";
-            }
-
-        }
-        System.out.println("a = " + a);
-        String signedHeaders = StringUtils.join(",", Arrays.asList(canonicalizedKeysArray));
-        System.out.println("signedHeaders8888:" + signedHeaders);
+        String signedHeaders = StringUtils.join(Arrays.asList(canonicalizedKeysArray), ";");
+        Arrays.sort(canonicalizedKeysArray);
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < canonicalizedKeysArray.length; i++) {
             String key = canonicalizedKeysArray[i];
@@ -103,7 +85,7 @@ public class Client {
             sb.append("\n");
         }
         result.put("canonicalHeaders", sb.toString());
-        result.put("signedHeaders", a);
+        result.put("signedHeaders", signedHeaders);
         return result;
     }
 
@@ -191,12 +173,9 @@ public class Client {
         }
         String method = request.method;
         Map<String, String> headers = request.headers;
-        System.out.println("headers:" + headers);
         Map<String, String> query = request.query;
         Map<String, String> cannoicalHeaders = getCanonicalizedHeadersMap(headers);
-        System.out.println("cannonicalHeaders:" + cannoicalHeaders);
         String signedHeaders = cannoicalHeaders.get("signedHeaders");
-        System.out.println("signedHeaders66667:" + signedHeaders);
         String queryString = getCanonicalizedResource(query);
         StringBuilder sb = new StringBuilder(method);
 
@@ -207,10 +186,8 @@ public class Client {
         String hex = hexEncode(hash(sb.toString().getBytes(UTF8), SIGN_ALGORITHM));
         String stringToSign = SIGN_ALGORITHM + "\n" + hex;
         String signature = hexEncode(SignatureMethod(stringToSign, secret, SIGN_ALGORITHM));
-       System.out.println("signedHeaders6666"+signedHeaders);
         String auth = SIGN_ALGORITHM + " Credential=" + accessKey + ",SignedHeaders=" + signedHeaders
-                + "Signature=" + signature;
-        System.out.println("auth666:" + auth);
+                + ",Signature=" + signature;
         return auth;
     }
 

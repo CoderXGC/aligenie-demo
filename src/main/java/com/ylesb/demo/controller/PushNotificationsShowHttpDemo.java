@@ -9,8 +9,8 @@ package com.ylesb.demo.controller;
  */
 
 
-import com.ylesb.demo.utils.Client;
 import com.ylesb.demo.utils.TeaRequest;
+import com.ylesb.demo.utils.Client;
 import com.ylesb.demo.utils.TimeUtil;
 import com.google.gson.Gson;
 import org.apache.commons.lang.StringUtils;
@@ -43,8 +43,8 @@ import java.util.*;
 
 public class PushNotificationsShowHttpDemo {
 
-    private static String ACCESS_KEY = "你的accessKey";
-    private static String ACCESS_SECRET = "你的accessSecret";
+    private static String ACCESS_KEY = "应用的accessKey";
+    private static String ACCESS_SECRET = "应用的accessSecret";
     private static String HTTP_URL = "http://openapi.aligenie.com/v1.0/iap/notifications";
 
     public static void main(String[] args) {
@@ -70,7 +70,7 @@ public class PushNotificationsShowHttpDemo {
             placeHolder.put("ip", "192.168.0.1");
 
             Map<String, Object> sendTarget = new HashMap<>();
-            sendTarget.put("TargetIdentity", "教程中获取的id");
+            sendTarget.put("TargetIdentity", "useropenid");
             //你使用什么就获取写什么
             sendTarget.put("TargetType", "USER_OPEN_ID");
 
@@ -82,7 +82,7 @@ public class PushNotificationsShowHttpDemo {
             notificationUnicastRequest.put("EncodeKey", "88074");
             notificationUnicastRequest.put("OrganizationId","1325195918262396007");
             // 是否是调试
-            notificationUnicastRequest.put("IsDebug",false);
+            notificationUnicastRequest.put("IsDebug",true);
 
             Map<String, Object> bodyMap = new HashMap<>();
             bodyMap.put("NotificationUnicastRequest", notificationUnicastRequest);
