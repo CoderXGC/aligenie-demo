@@ -80,3 +80,5 @@ USER_OPEN_ID ：用户openId
 这些值。我们需要用到的。剩下的跟着官方教程就可以完成了。  
 ## 交流
 ![Image text](https://i.loli.net/2021/11/29/Rm1SX7JWPBEDsat.png)
+### 捐助  
+![Image text](https://www.ylesb.com/wp-content/uploads/2022/04/1651062390-642.png)
